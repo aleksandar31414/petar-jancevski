@@ -50,7 +50,7 @@ export default function DbPage() {
             <div className="panel h-100 text-center">
               <i className="bi bi-database-add text-success" style={{ fontSize: '2.5rem' }} />
               <h2 className="h5 mt-2">Внеси иницијални податоци</h2>
-              <p className="small text-muted">Ја празни базата и внесува 6 врвови, 8 предмети опрема, 5 корисници, 10 тури, пријави, коментари и активности.</p>
+              <p className="small text-muted">Ја празни базата и внесува 14 врвови, 8 предмети опрема, 13 корисници (3 водичи), 24 тури, пријави, коментари и активности.</p>
               <button type="button" className="btn btn-forest" disabled={busy} onClick={() => setConfirm('seed')}><i className="bi bi-upload me-1" />Внеси податоци</button>
             </div>
           </div>
