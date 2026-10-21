@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Резиме – ВрвТура</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-forest sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html"><i class="bi bi-triangle-fill me-1"></i>ВрвТура</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Мени">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Почетна</a></li>
+<li class="nav-item"><a class="nav-link" href="ture.html"><i class="bi bi-signpost-split me-1"></i>Тури</a></li>
+<li class="nav-item"><a class="nav-link" href="prebaruvanje.html"><i class="bi bi-search me-1"></i>Пребарување</a></li>
+<li class="nav-item"><a class="nav-link" href="prognoza.html"><i class="bi bi-cloud-sun me-1"></i>Прогноза</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge bg-secondary role-badge"><i class="bi bi-person-badge me-1"></i>Гостин</span>
+        <a href="najava.html" class="btn btn-sm btn-outline-light"><i class="bi bi-box-arrow-in-right me-1"></i>Најава</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<main>
+<section class="page-head"><div class="container">
+<nav aria-label="breadcrumb"><ol class="breadcrumb small mb-2"><li class="breadcrumb-item"><a href="index.html">Почетна</a></li><li class="breadcrumb-item active">Резиме</li></ol></nav>
+<h1 class="h3 mb-1">Резиме на апликацијата</h1><p class="mb-0 opacity-75">ВрвТура – организатор на планинарски тури · Дел 1: нацрт и модел на рамка</p></div></section>
+<div class="container">
+<div class="panel mb-4"><h2 class="h5">Идеја</h2>
+<p>ВрвТура е веб-апликација за планинарски клуб која овозможува објавување организирани тури, пријавување учесници, коментари и оцени, и – како главна надградба – автоматска <strong>временска прогноза за конкретниот врв и денот на турата</strong> од надворешниот извор Open-Meteo API. Апликацијата не е обична продавница или форум: фокусот е на безбедно планирање на турите според тежината и временските услови.</p></div>
+
+<div class="panel mb-4"><h2 class="h5">Маски на екрани</h2>
+<div class="table-responsive"><table class="table table-sm small"><thead><tr><th>Екран</th><th>Датотека</th><th>Барање од задачата</th></tr></thead><tbody><tr><td><a href="najava.html">Најава / Регистрација</a></td><td><code>najava.html</code></td><td>најава/регистрација на корисникот</td></tr><tr><td><a href="dodaj-tura.html">Додај тура</a></td><td><code>dodaj-tura.html</code></td><td>додавање елемент</td></tr><tr><td><a href="ture.html">Сите тури</a></td><td><code>ture.html</code></td><td>printout на листа на елементи</td></tr><tr><td><a href="tura-detali.html">Детали за тура</a></td><td><code>tura-detali.html</code></td><td>детален пример</td></tr><tr><td><a href="brisi-tura.html">Избриши тура</a></td><td><code>brisi-tura.html</code></td><td>бришење елемент</td></tr><tr><td><a href="uredi-tura.html">Уреди тура</a></td><td><code>uredi-tura.html</code></td><td>прегледување и уредување на елементот</td></tr><tr><td><a href="prebaruvanje.html">Пребарување</a></td><td><code>prebaruvanje.html</code></td><td>пребарување</td></tr><tr><td><a href="prognoza.html">Прогноза (Open-Meteo)</a></td><td><code>prognoza.html</code></td><td>интеграција со надворешен извор</td></tr><tr><td><a href="index.html">Почетна</a></td><td><code>index.html</code></td><td>дополнителен екран (root /)</td></tr><tr><td><a href="profil.html">Мој профил</a></td><td><code>profil.html</code></td><td>дополнителен: drag &amp; drop, историја</td></tr><tr><td><a href="admin.html">Админ табла</a></td><td><code>admin.html</code></td><td>дополнителен: графикони, улоги</td></tr><tr><td><a href="izvestaj.html">Извештај</a></td><td><code>izvestaj.html</code></td><td>дополнителен: генерирање извештаи</td></tr><tr><td><a href="db.html">/db</a></td><td><code>db.html</code></td><td>дополнителен: подготовка за Дел 3</td></tr></tbody></table></div>
+<p class="small mb-0">На дното од секоја маска има дел „Опис на функционалностите на овој екран“.</p></div>
+
+<div class="row g-4 mb-4">
+<div class="col-lg-6"><div class="panel h-100"><h2 class="h5">Кориснички улоги</h2>
+<table class="table table-sm small mb-0"><thead><tr><th>Улога</th><th>Што може</th></tr></thead><tbody>
+<tr><td><strong>Гостин</strong></td><td>Преглед на почетна, листа и детали за тури, пребарување и прогноза. Не може да се пријави на тура ни да коментира.</td></tr>
+<tr><td><strong>Регистриран корисник</strong></td><td>Сè што гостинот + пријава/откажување на тура, коментари и оцени, личен профил, листа за опрема (drag &amp; drop), историја на активности. Менува само свои податоци.</td></tr>
+<tr><td><strong>Администратор / водич</strong></td><td>Целосен пристап: додавање, уредување и бришење тури и корисници, менување улоги, графикони, извештаи, страница /db.</td></tr>
+</tbody></table></div></div>
+<div class="col-lg-6"><div class="panel h-100"><h2 class="h5">Планирани колекции (MongoDB)</h2>
+<ol class="small mb-0">
+<li><strong>Корисници</strong> – име, е-пошта, хеширана лозинка, улога, искуство</li>
+<li><strong>Локации</strong> – врв, регион, надморска височина, координати (за Open-Meteo)</li>
+<li><strong>Тури</strong> – назив, тежина, датум, должина, места, цена; <em>зависна од Локации и Корисници (водич)</em></li>
+<li><strong>Пријави</strong> – <em>зависна од Корисници и Тури</em>; статус, превоз</li>
+<li><strong>Коментари</strong> – <em>зависна од Корисници и Тури</em>; текст, оцена, одговор</li>
+<li><strong>Опрема</strong> – предмети и лична листа со редослед</li>
+<li><strong>Активности</strong> – историски преглед (кој, кога, што)</li>
+</ol></div></div>
+</div>
+
+<div class="panel mb-4"><h2 class="h5">Функционални барања кои се опфатени</h2>
+<ul class="small mb-0">
+<li><strong>Неколку кориснички улоги</strong> и различни погледи (менито и копчињата се менуваат според улогата).</li>
+<li><strong>Известување по е-пошта</strong> (nodemailer): потврда при регистрација, потврда на пријава, промена/откажување на тура, лоша прогноза.</li>
+<li><strong>Графикони</strong> (Chart.js / NG2 Charts): учесници по месец, тури по тежина.</li>
+<li><strong>Напредни HTML компоненти</strong>: date/time, range, datalist, file, switch, modal, tabs, progress.</li>
+<li><strong>Генерирање извештаи</strong>: листа на тури и учесници за печатење/PDF (pdfkit).</li>
+<li><strong>Влечење и спуштање</strong>: подредување на листата за опрема.</li>
+<li><strong>Компонента за зумирање</strong>: галерија на слики во деталите за тура.</li>
+<li><strong>Историски преглед на активности</strong>: во профилот, во уредувањето на тура и во админ таблата.</li>
+<li><strong>Интеракција помеѓу корисниците</strong>: коментари, одговори и оцени.</li>
+</ul></div>
+
+<div class="panel mb-4"><h2 class="h5">Надворешен извор: Open-Meteo API</h2>
+<p class="small mb-0">Бесплатен API без клуч (<code>https://api.open-meteo.com/v1/forecast</code>). Базата ги чува само координатите и височината на врвовите; температурата, ветерот и веројатноста за врнежи се преземаат во живо. Тоа се податоци кои базата на проектот примарно ги нема, и не се ниту најава преку социјална мрежа ниту мапа – ги исполнува условите од задачата.</p></div>
+
+<div class="panel mb-4"><h2 class="h5">Планирани npm пакети (Дел 3)</h2>
+<p class="small mb-0"><code>bcryptjs</code> (хеширање лозинки), <code>nodemailer</code> (е-пошта), <code>jsonwebtoken</code> (JWT), <code>pdfkit</code> (PDF извештаи), <code>swagger-jsdoc</code> и <code>swagger-ui-express</code> (документација на REST API).</p></div>
+
+<div class="row g-4">
+<div class="col-lg-6"><div class="panel h-100"><h2 class="h5">Уреди (опционално барање)</h2>
+<p class="small mb-0">Маските се изработени со Bootstrap 5.3 и мрежа (grid) која се прилагодува: <strong>десктоп</strong> (≥992 px – 3 картички во ред, странична лента со филтри), <strong>таблет</strong> (576–991 px – 2 картички, филтрите над резултатите), <strong>мобилен</strong> (&lt;576 px – 1 картичка, мени со копче „хамбургер“, табелите со хоризонтално лизгање).</p></div></div>
+<div class="col-lg-6"><div class="panel h-100"><h2 class="h5">Проверка во прелистувачи</h2>
+<table class="table table-sm small mb-0"><thead><tr><th>Прелистувач</th><th>Забелешка</th></tr></thead><tbody>
+<tr><td>Chrome</td><td>Сè се прикажува како што е замислено.</td></tr>
+<tr><td>Firefox</td><td>Полињата за датум и време имаат поинаков изглед на календарот; лизгачот (range) е малку поинаку стилизиран.</td></tr>
+<tr><td>Safari</td><td>Полињата <code>date</code>/<code>time</code> и <code>datalist</code> изгледаат поинаку; влечењето на iOS бара долг притисок.</td></tr>
+</tbody></table>
+<p class="small text-muted mt-2 mb-0">Пред предавање провери ги сами и дополни ги разликите што ќе ги забележиш.</p></div></div>
+</div>
+</div>
+<div class="container mt-4">
+  <details class="opis" open>
+    <summary><i class="bi bi-info-circle me-1"></i>Опис на функционалностите на овој екран</summary>
+    <ul><li>Резиме на функционалностите на апликацијата кое се поставува на виртуелната училница заедно со кодот.</li><li>Содржи листа на сите маски, улоги, планирани колекции, надворешен извор и опфатени барања.</li></ul>
+  </details>
+</div>
+</main>
+<footer class="footer">
+  <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+    <span>© 2026 ВрвТура – организатор на планинарски тури</span>
+    <span>Веб програмирање 2026 · Дел 1 · <a href="rezime.html">Резиме</a> · <a href="db.html">/db</a></span>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

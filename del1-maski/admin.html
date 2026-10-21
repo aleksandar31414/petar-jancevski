@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Админ табла – ВрвТура</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-forest sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html"><i class="bi bi-triangle-fill me-1"></i>ВрвТура</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Мени">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Почетна</a></li>
+<li class="nav-item"><a class="nav-link" href="ture.html"><i class="bi bi-signpost-split me-1"></i>Тури</a></li>
+<li class="nav-item"><a class="nav-link" href="prebaruvanje.html"><i class="bi bi-search me-1"></i>Пребарување</a></li>
+<li class="nav-item"><a class="nav-link" href="prognoza.html"><i class="bi bi-cloud-sun me-1"></i>Прогноза</a></li>
+<li class="nav-item"><a class="nav-link" href="profil.html"><i class="bi bi-person me-1"></i>Мој профил</a></li>
+<li class="nav-item"><a class="nav-link active" href="admin.html"><i class="bi bi-speedometer2 me-1"></i>Админ</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge bg-warning text-dark role-badge"><i class="bi bi-person-badge me-1"></i>Админ: Марко С.</span>
+        <a href="najava.html" class="btn btn-sm btn-outline-light"><i class="bi bi-box-arrow-right me-1"></i>Одјава</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<main>
+<section class="page-head"><div class="container">
+<nav aria-label="breadcrumb"><ol class="breadcrumb small mb-2"><li class="breadcrumb-item"><a href="index.html">Почетна</a></li><li class="breadcrumb-item active">Админ</li></ol></nav>
+<h1 class="h3 mb-1">Админ табла</h1><p class="mb-0 opacity-75">Целосен пристап до турите, корисниците и извештаите</p></div></section>
+<div class="container">
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3"><div class="stat"><div class="num">24</div><div class="small text-muted">Активни тури</div></div></div>
+  <div class="col-6 col-lg-3"><div class="stat"><div class="num">412</div><div class="small text-muted">Корисници</div></div></div>
+  <div class="col-6 col-lg-3"><div class="stat"><div class="num">97</div><div class="small text-muted">Пријави овој месец</div></div></div>
+  <div class="col-6 col-lg-3"><div class="stat" style="border-color:#c0392b"><div class="num">2</div><div class="small text-muted">Тури со лоша прогноза</div></div></div>
+</div>
+<div class="row g-4 mb-4">
+  <div class="col-lg-8"><div class="panel h-100"><h2 class="h6">Учесници по месец</h2><canvas id="chartMesec" height="120"></canvas></div></div>
+  <div class="col-lg-4"><div class="panel h-100"><h2 class="h6">Тури по тежина</h2><canvas id="chartTezina" height="200"></canvas></div></div>
+</div>
+<div class="row g-4">
+  <div class="col-lg-8"><div class="panel">
+    <div class="d-flex justify-content-between align-items-center mb-2"><h2 class="h6 mb-0">Корисници</h2>
+      <a href="izvestaj.html" class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-earmark-pdf me-1"></i>Генерирај извештај</a></div>
+    <div class="table-responsive"><table class="table table-sm align-middle small mb-0">
+    <thead><tr><th>Име</th><th>Е-пошта</th><th>Улога</th><th>Тури</th><th></th></tr></thead><tbody>
+      <tr><td>Ана Петрова</td><td>ana.petrova@example.com</td><td><select class="form-select form-select-sm" aria-label="Улога"><option selected>Корисник</option><option>Админ</option></select></td><td>9</td><td><button class="btn btn-sm btn-outline-danger" aria-label="Избриши"><i class="bi bi-trash"></i></button></td></tr>
+      <tr><td>Иван Костов</td><td>ivan.k@example.com</td><td><select class="form-select form-select-sm" aria-label="Улога"><option selected>Корисник</option><option>Админ</option></select></td><td>14</td><td><button class="btn btn-sm btn-outline-danger" aria-label="Избриши"><i class="bi bi-trash"></i></button></td></tr>
+      <tr><td>Марко Стојанов</td><td>marko.s@example.com</td><td><select class="form-select form-select-sm" aria-label="Улога"><option>Корисник</option><option selected>Админ</option></select></td><td>31</td><td></td></tr>
+      <tr><td>Елена Димова</td><td>elena.d@example.com</td><td><select class="form-select form-select-sm" aria-label="Улога"><option selected>Корисник</option><option>Админ</option></select></td><td>2</td><td><button class="btn btn-sm btn-outline-danger" aria-label="Избриши"><i class="bi bi-trash"></i></button></td></tr>
+    </tbody></table></div></div></div>
+  <div class="col-lg-4"><div class="panel"><h2 class="h6">Последни активности во системот</h2>
+    <ul class="timeline small">
+      <li><strong>12:04</strong> Ана П. се пријави на „Кораб“</li>
+      <li><strong>11:40</strong> Систем: лоша прогноза за „Шара“ – испратена е-пошта</li>
+      <li><strong>10:15</strong> Марко С. ја измени турата „Пелистер“</li>
+      <li><strong>09:02</strong> Нов корисник: Елена Д.</li>
+    </ul></div></div>
+</div></div>
+<div class="container mt-4">
+  <details class="opis" open>
+    <summary><i class="bi bi-info-circle me-1"></i>Опис на функционалностите на овој екран</summary>
+    <ul><li>Посебен поглед само за <strong>администратор</strong> – целосен пристап за промена и бришење податоци.</li><li><strong>Графикони</strong> (Chart.js; во Дел 4 – NG2 Charts): учесници по месец и распределба на тури по тежина.</li><li>Управување со корисници: промена на улога (корисник/админ) и бришење корисник.</li><li><strong>Генерирање извештај</strong> за корисници и тури (печатење / PDF со npm пакетот <code>pdfkit</code>).</li><li>Историски преглед на сите активности во системот (колекција Активности).</li><li>Предупредување за тури со лоша прогноза од Open-Meteo.</li></ul>
+  </details>
+</div>
+</main>
+<footer class="footer">
+  <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+    <span>© 2026 ВрвТура – организатор на планинарски тури</span>
+    <span>Веб програмирање 2026 · Дел 1 · <a href="rezime.html">Резиме</a> · <a href="db.html">/db</a></span>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+// Фиксни податоци за графиконите (во Дел 3/4 ќе доаѓаат од REST API)
+new Chart(document.getElementById('chartMesec'), { type: 'bar',
+  data: { labels: ['Мај','Јун','Јул','Авг','Сеп','Окт'], datasets: [{ label: 'Учесници', data: [64, 88, 120, 134, 91, 97], backgroundColor: '#4f7f5f', borderRadius: 6 }] },
+  options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } } });
+new Chart(document.getElementById('chartTezina'), { type: 'doughnut',
+  data: { labels: ['Лесна','Средна','Тешка'], datasets: [{ data: [9, 10, 5], backgroundColor: ['#3c9a5f','#e8a33d','#c0392b'] }] },
+  options: { plugins: { legend: { position: 'bottom' } } } });
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мој профил – ВрвТура</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-forest sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html"><i class="bi bi-triangle-fill me-1"></i>ВрвТура</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Мени">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Почетна</a></li>
+<li class="nav-item"><a class="nav-link" href="ture.html"><i class="bi bi-signpost-split me-1"></i>Тури</a></li>
+<li class="nav-item"><a class="nav-link" href="prebaruvanje.html"><i class="bi bi-search me-1"></i>Пребарување</a></li>
+<li class="nav-item"><a class="nav-link" href="prognoza.html"><i class="bi bi-cloud-sun me-1"></i>Прогноза</a></li>
+<li class="nav-item"><a class="nav-link active" href="profil.html"><i class="bi bi-person me-1"></i>Мој профил</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge bg-success role-badge"><i class="bi bi-person-badge me-1"></i>Корисник: Ана П.</span>
+        <a href="najava.html" class="btn btn-sm btn-outline-light"><i class="bi bi-box-arrow-right me-1"></i>Одјава</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<main>
+<section class="page-head"><div class="container">
+<nav aria-label="breadcrumb"><ol class="breadcrumb small mb-2"><li class="breadcrumb-item"><a href="index.html">Почетна</a></li><li class="breadcrumb-item active">Мој профил</li></ol></nav>
+<h1 class="h3 mb-1">Мој профил</h1><p class="mb-0 opacity-75">Ана Петрова · регистриран корисник од 03.2026</p></div></section>
+<div class="container"><div class="row g-4">
+<div class="col-lg-4">
+  <div class="panel text-center mb-4"><div class="avatar mx-auto mb-2" style="width:72px;height:72px;font-size:1.6rem">АП</div>
+    <h2 class="h5 mb-0">Ана Петрова</h2><p class="small text-muted">ana.petrova@example.com · Средно искусна</p>
+    <div class="row g-2 small"><div class="col-4"><div class="fw-bold fs-5">9</div>тури</div><div class="col-4"><div class="fw-bold fs-5">102</div>км</div><div class="col-4"><div class="fw-bold fs-5">6</div>врвови</div></div>
+    <a href="#" class="btn btn-sm btn-outline-forest mt-3"><i class="bi bi-gear me-1"></i>Уреди профил</a></div>
+  <div class="panel">
+    <h3 class="h6 mb-1"><i class="bi bi-backpack me-1"></i>Моја листа за опрема</h3>
+    <p class="small text-muted">Влечи и спушти за да го смениш редоследот на пакување.</p>
+    <div id="dragList">
+      <div class="drag-item" draggable="true"><i class="bi bi-grip-vertical me-2"></i>Планинарски чевли</div>
+      <div class="drag-item" draggable="true"><i class="bi bi-grip-vertical me-2"></i>Ветровка</div>
+      <div class="drag-item" draggable="true"><i class="bi bi-grip-vertical me-2"></i>Термос со чај</div>
+      <div class="drag-item" draggable="true"><i class="bi bi-grip-vertical me-2"></i>Челна ламба</div>
+      <div class="drag-item" draggable="true"><i class="bi bi-grip-vertical me-2"></i>Прва помош</div>
+    </div>
+  </div>
+</div>
+<div class="col-lg-8">
+  <div class="panel mb-4"><h3 class="h6">Мои пријави</h3>
+  <div class="table-responsive"><table class="table align-middle small mb-0">
+    <thead><tr><th>Тура</th><th>Датум</th><th>Статус</th><th>Прогноза</th><th></th></tr></thead>
+    <tbody>
+      <tr><td><a href="tura-detali.html">Пелистер – Големо Езеро</a></td><td>14.11.2026</td><td><span class="badge bg-success">Потврдена</span></td><td><i class="bi bi-cloud-sun-fill text-warning"></i> 6°</td><td><button class="btn btn-sm btn-outline-danger">Откажи</button></td></tr>
+      <tr><td><a href="tura-detali.html">Кораб – највисок врв</a></td><td>21.11.2026</td><td><span class="badge bg-warning text-dark">Листа на чекање</span></td><td><i class="bi bi-cloud-fill text-secondary"></i> 3°</td><td><button class="btn btn-sm btn-outline-danger">Откажи</button></td></tr>
+    </tbody></table></div></div>
+  <div class="panel"><h3 class="h6">Историја на мои активности</h3>
+  <ul class="timeline small">
+    <li><strong>20.10.2026</strong> – Се пријави на „Кораб – највисок врв“ (листа на чекање).</li>
+    <li><strong>18.10.2026</strong> – Остави коментар на „Пелистер – Големо Езеро“.</li>
+    <li><strong>15.10.2026</strong> – Пријавата за „Пелистер – Големо Езеро“ е потврдена (испратена е-пошта).</li>
+    <li><strong>04.10.2026</strong> – Ја заврши турата „Водно – Милениумски крст“ и ја оцени со 5 ѕвезди.</li>
+    <li><strong>12.03.2026</strong> – Креираше профил.</li>
+  </ul></div>
+</div></div></div>
+<div class="container mt-4">
+  <details class="opis" open>
+    <summary><i class="bi bi-info-circle me-1"></i>Опис на функционалностите на овој екран</summary>
+    <ul><li>Личен профил на <strong>регистриран корисник</strong> со статистика (број тури, километри, освоени врвови).</li><li>Листа на сопствени пријави со статус (потврдена / листа на чекање), прогноза за денот и можност за откажување.</li><li><strong>Влечење и спуштање</strong> (drag &amp; drop) за подредување на личната листа за опрема.</li><li><strong>Историски преглед на активностите</strong> на корисникот (пријави, коментари, оцени, потврди по е-пошта).</li><li>Корисникот може да менува само свои податоци (ограничени промени преку REST API).</li></ul>
+  </details>
+</div>
+</main>
+<footer class="footer">
+  <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+    <span>© 2026 ВрвТура – организатор на планинарски тури</span>
+    <span>Веб програмирање 2026 · Дел 1 · <a href="rezime.html">Резиме</a> · <a href="db.html">/db</a></span>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Демонстрација на влечење и спуштање (HTML5 Drag and Drop) – податоците се фиксни
+const list = document.getElementById('dragList');
+let dragged = null;
+list.addEventListener('dragstart', e => { dragged = e.target; e.target.classList.add('dragging'); });
+list.addEventListener('dragend', e => e.target.classList.remove('dragging'));
+list.addEventListener('dragover', e => {
+  e.preventDefault();
+  const after = [...list.querySelectorAll('.drag-item:not(.dragging)')].find(el => e.clientY < el.getBoundingClientRect().top + el.offsetHeight / 2);
+  after ? list.insertBefore(dragged, after) : list.appendChild(dragged);
+});
+</script>
+</body>
+</html>

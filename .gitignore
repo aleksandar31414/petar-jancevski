@@ -1,0 +1,4 @@
+node_modules/
+app_public/node_modules/
+app_public/dist/
+.env

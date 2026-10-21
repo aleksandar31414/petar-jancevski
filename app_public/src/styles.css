@@ -1,0 +1,133 @@
+/* ВрвТура – заеднички стилови за сите маски (Дел 1) */
+:root {
+  --forest: #1f4d3a;
+  --forest-dark: #153728;
+  --moss: #4f7f5f;
+  --sand: #f4efe6;
+  --sun: #e8a33d;
+  --stone: #6b6f6a;
+}
+
+body {
+  background: var(--sand);
+  color: #22261f;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1; }
+
+.bg-forest { background: var(--forest) !important; }
+.text-forest { color: var(--forest) !important; }
+.btn-forest { background: var(--forest); color: #fff; border: none; }
+.btn-forest:hover { background: var(--forest-dark); color: #fff; }
+.btn-outline-forest { border: 1px solid var(--forest); color: var(--forest); }
+.btn-outline-forest:hover { background: var(--forest); color: #fff; }
+
+.navbar-brand i { color: var(--sun); }
+.role-badge { font-size: .7rem; }
+
+/* Насловна секција */
+.hero {
+  background: linear-gradient(160deg, rgba(21,55,40,.92), rgba(79,127,95,.85)),
+              repeating-linear-gradient(135deg, #2c5e47 0 40px, #275640 40px 80px);
+  color: #fff;
+  padding: 5rem 0 4rem;
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 70% 100%, 40% 90%, 0 100%);
+}
+.page-head {
+  background: var(--forest);
+  color: #fff;
+  padding: 2rem 0 1.6rem;
+  margin-bottom: 2rem;
+}
+.page-head .breadcrumb a { color: #cfe3d6; }
+.page-head .breadcrumb-item.active { color: #fff; }
+.page-head .breadcrumb-item + .breadcrumb-item::before { color: #cfe3d6; }
+
+/* Картички за тури */
+.tour-card { border: none; border-radius: 14px; overflow: hidden; transition: transform .15s; }
+.tour-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,.08); }
+.tour-img {
+  height: 160px; display: flex; align-items: flex-end; padding: .8rem;
+  color: #fff; font-size: 2.6rem; position: relative;
+}
+.g1 { background: linear-gradient(135deg, #2f6b52, #9cc3a8); }
+.g2 { background: linear-gradient(135deg, #3a4f6b, #a7b9d1); }
+.g3 { background: linear-gradient(135deg, #6b4a2f, #d9b48a); }
+.g4 { background: linear-gradient(135deg, #4b2f6b, #b9a2d6); }
+.g5 { background: linear-gradient(135deg, #2f5f6b, #8fc8d3); }
+.g6 { background: linear-gradient(135deg, #5d6b2f, #c8d38f); }
+.tour-img .badge { position: absolute; top: .8rem; right: .8rem; font-size: .75rem; }
+
+.diff-lesna { background: #3c9a5f !important; }
+.diff-sredna { background: var(--sun) !important; }
+.diff-teshka { background: #c0392b !important; }
+
+.panel { background: #fff; border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+.stat { background: #fff; border-radius: 14px; padding: 1.2rem; border-left: 5px solid var(--moss); height: 100%; }
+.stat .num { font-size: 1.8rem; font-weight: 700; color: var(--forest); }
+
+/* Временска прогноза */
+.weather-day { background: #fff; border-radius: 12px; padding: 1rem .5rem; text-align: center; height: 100%; }
+.weather-day i { font-size: 2rem; }
+.weather-day.today { outline: 2px solid var(--sun); }
+.code-box { background: #1e2420; color: #cde7d6; border-radius: 10px; padding: 1rem; font-size: .8rem; overflow-x: auto; white-space: pre; }
+
+/* Листа опрема – влечење и спуштање */
+.drag-item { cursor: grab; background: #fff; border: 1px dashed #b9c8bd; border-radius: 8px; padding: .55rem .8rem; margin-bottom: .45rem; }
+.drag-item.dragging { opacity: .45; }
+.drag-item i.bi-grip-vertical { color: var(--stone); }
+
+/* Галерија со зумирање */
+.gallery-thumb { height: 90px; border-radius: 10px; cursor: zoom-in; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.6rem; border: none; width: 100%; }
+.zoom-view { height: 60vh; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 7rem; }
+
+/* Коментари */
+.avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--moss); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0; }
+
+/* Историја на активности */
+.timeline { border-left: 3px solid #cfdcd2; padding-left: 1.2rem; list-style: none; margin: 0; }
+.timeline li { position: relative; margin-bottom: 1rem; }
+.timeline li::before { content: ""; position: absolute; left: -1.62rem; top: .35rem; width: 12px; height: 12px; border-radius: 50%; background: var(--moss); }
+
+/* Опис на екранот (барање од Дел 1) */
+.opis { background: #fffdf7; border: 1px solid #e6dcc6; border-radius: 12px; padding: 1rem 1.2rem; }
+.opis summary { font-weight: 600; color: var(--forest); cursor: pointer; }
+.opis ul { margin: .8rem 0 0; }
+
+.auth-wrap { max-width: 480px; }
+
+.footer { background: var(--forest-dark); color: #b9cdbf; padding: 1.5rem 0; font-size: .9rem; margin-top: 3rem; }
+.footer a { color: #fff; }
+
+@media (max-width: 576px) {
+  .hero { padding: 3rem 0 3rem; }
+  .hero h1 { font-size: 1.9rem; }
+  .tour-img { height: 120px; }
+  .zoom-view { height: 40vh; font-size: 4rem; }
+}
+
+/* ---------- Додатоци за React апликацијата (Дел 4) ---------- */
+.modal-backdrop-custom { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 1050; }
+.modal.d-block { z-index: 1055; overflow-y: auto; }
+.zoom-stage { height: 60vh; overflow: hidden; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: zoom-in; }
+.zoom-stage .zoom-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 7rem; transition: transform .15s ease-out; }
+.drag-item.drag-over { border-color: var(--forest); background: #eef5f0; }
+.cursor-pointer { cursor: pointer; }
+.stars button { background: none; border: none; padding: 0 .1rem; font-size: 1.3rem; color: #c9c9c9; }
+.stars button.on { color: var(--sun); }
+.loader { min-height: 30vh; display: flex; align-items: center; justify-content: center; }
+.nav-link.active { font-weight: 600; }
+@media (max-width: 576px) { .zoom-stage { height: 40vh; } .zoom-stage .zoom-inner { font-size: 4rem; } }
+@media print {
+  .navbar, .footer, .no-print { display: none !important; }
+  body { background: #fff; }
+  .panel { box-shadow: none; }
+}
+
+/* 7-дневна прогноза */
+.week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: .5rem; }
+@media (max-width: 991px) { .week-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 576px) { .week-grid { grid-template-columns: repeat(3, 1fr); } }

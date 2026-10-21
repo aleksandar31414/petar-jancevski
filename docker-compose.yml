@@ -1,0 +1,27 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: vrvtura-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  app:
+    build: .
+    container_name: vrvtura-app
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: docker
+      PORT: 3000
+      MONGODB_URI: mongodb://mongo:27017/vrvtura
+      JWT_SECRET: lokalen-docker-kluch-samo-za-razvoj
+      SERVE_MOCKUPS: "false"
+
+volumes:
+  mongo-data:

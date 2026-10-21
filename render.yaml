@@ -1,0 +1,21 @@
+# Render Blueprint – https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: vrvtura
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/stats
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "20"
+      - key: MONGODB_ATLAS_URI
+        sync: false          # се внесува рачно при креирање (connection string од MongoDB Atlas)
+      - key: JWT_SECRET
+        generateValue: true  # Render генерира случаен таен клуч
+      - key: MAIL_FROM
+        value: "ВрвТура <no-reply@vrvtura.mk>"

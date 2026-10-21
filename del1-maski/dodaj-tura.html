@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Додај тура – ВрвТура</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-forest sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html"><i class="bi bi-triangle-fill me-1"></i>ВрвТура</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Мени">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house me-1"></i>Почетна</a></li>
+<li class="nav-item"><a class="nav-link" href="ture.html"><i class="bi bi-signpost-split me-1"></i>Тури</a></li>
+<li class="nav-item"><a class="nav-link" href="prebaruvanje.html"><i class="bi bi-search me-1"></i>Пребарување</a></li>
+<li class="nav-item"><a class="nav-link" href="prognoza.html"><i class="bi bi-cloud-sun me-1"></i>Прогноза</a></li>
+<li class="nav-item"><a class="nav-link" href="profil.html"><i class="bi bi-person me-1"></i>Мој профил</a></li>
+<li class="nav-item"><a class="nav-link" href="admin.html"><i class="bi bi-speedometer2 me-1"></i>Админ</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge bg-warning text-dark role-badge"><i class="bi bi-person-badge me-1"></i>Админ: Марко С.</span>
+        <a href="najava.html" class="btn btn-sm btn-outline-light"><i class="bi bi-box-arrow-right me-1"></i>Одјава</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<main>
+<section class="page-head"><div class="container">
+<nav aria-label="breadcrumb"><ol class="breadcrumb small mb-2"><li class="breadcrumb-item"><a href="index.html">Почетна</a></li><li class="breadcrumb-item"><a href="ture.html">Тури</a></li><li class="breadcrumb-item active">Нова тура</li></ol></nav>
+<h1 class="h3 mb-1">Додај нова тура</h1><p class="mb-0 opacity-75">Достапно само за администратор/водич</p></div></section><div class="container"><form class="panel">
+<div class="row g-3">
+  <div class="col-md-8"><label class="form-label" for="ime">Назив на турата *</label><input id="ime" class="form-control" value="Кораб – највисок врв" required minlength="5" maxlength="80"></div>
+  <div class="col-md-4"><label class="form-label" for="tez">Тежина *</label><select id="tez" class="form-select" required><option value="lesna">Лесна</option><option value="sredna">Средна</option><option value="teshka" selected>Тешка</option></select></div>
+  <div class="col-md-6"><label class="form-label" for="lok">Врв / локација *</label>
+    <select id="lok" class="form-select"><option>Пелистер (2601 м)</option><option selected>Кораб (2764 м)</option><option>Титов Врв (2747 м)</option><option>Солунска Глава (2540 м)</option><option>Водно (1066 м)</option></select>
+    <div class="form-text">Координатите на врвот се користат за прогнозата од Open-Meteo.</div></div>
+  <div class="col-6 col-md-3"><label class="form-label" for="dat">Датум *</label><input type="date" id="dat" class="form-control" value="2026-11-21" required></div>
+  <div class="col-6 col-md-3"><label class="form-label" for="vr">Час на средба</label><input type="time" id="vr" class="form-control" value="06:00"></div>
+  <div class="col-6 col-md-3"><label class="form-label" for="km">Должина (км)</label><input type="number" id="km" class="form-control" value="18" min="1" max="60"></div>
+  <div class="col-6 col-md-3"><label class="form-label" for="up">Искачување (м)</label><input type="number" id="up" class="form-control" value="1400" min="0" max="3000"></div>
+  <div class="col-6 col-md-3"><label class="form-label" for="h">Времетраење (ч)</label><input type="number" id="h" class="form-control" value="9" min="1" max="24"></div>
+  <div class="col-6 col-md-3"><label class="form-label" for="cap">Макс. учесници *</label><input type="number" id="cap" class="form-control" value="15" min="2" max="60" required></div>
+  <div class="col-md-4"><label class="form-label" for="cena">Цена (ден.)</label><input type="number" id="cena" class="form-control" value="900" min="0" step="50"></div>
+  <div class="col-md-4"><label class="form-label" for="vod">Водич</label><select id="vod" class="form-select"><option selected>Марко С.</option><option>Сашо Т.</option></select></div>
+  <div class="col-md-4"><label class="form-label" for="sl">Насловна слика</label><input type="file" id="sl" class="form-control" accept="image/*"></div>
+  <div class="col-12"><label class="form-label" for="opis">Опис</label><textarea id="opis" class="form-control" rows="4" maxlength="1500">Качување на највисокиот врв во Македонија од село Стрезимир. Потребна е добра кондиција.</textarea></div>
+  <div class="col-12"><label class="form-label">Задолжителна опрема</label><div class="d-flex flex-wrap gap-3">
+    <div class="form-check"><input class="form-check-input" type="checkbox" id="o1" checked><label class="form-check-label" for="o1">Планинарски чевли</label></div>
+    <div class="form-check"><input class="form-check-input" type="checkbox" id="o2" checked><label class="form-check-label" for="o2">Ветровка</label></div>
+    <div class="form-check"><input class="form-check-input" type="checkbox" id="o3"><label class="form-check-label" for="o3">Дереза</label></div>
+    <div class="form-check"><input class="form-check-input" type="checkbox" id="o4" checked><label class="form-check-label" for="o4">Челна ламба</label></div>
+    <div class="form-check"><input class="form-check-input" type="checkbox" id="o5"><label class="form-check-label" for="o5">Стапови</label></div>
+  </div></div>
+  <div class="col-12"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="notif" checked><label class="form-check-label" for="notif">Испрати е-пошта до претплатените корисници за новата/изменетата тура</label></div></div>
+</div>
+<hr><div class="d-flex justify-content-end gap-2"><a href="ture.html" class="btn btn-outline-secondary">Откажи</a>
+<a href="tura-detali.html" class="btn btn-forest"><i class="bi bi-check-lg me-1"></i>Зачувај тура</a></div>
+</form></div>
+<div class="container mt-4">
+  <details class="opis" open>
+    <summary><i class="bi bi-info-circle me-1"></i>Опис на функционалностите на овој екран</summary>
+    <ul><li>Форма за <strong>додавање нов елемент</strong> (тура) – достапна само за администраторот.</li><li>Полиња: назив, тежина (затворен сет: лесна/средна/тешка), врв/локација од колекцијата Локации, датум, час, должина, искачување, времетраење, максимален број учесници, цена, водич, слика и опис.</li><li>Изборот на опрема доаѓа од колекцијата Опрема (повеќекратен избор).</li><li>Валидација на ниво на клиент: задолжителни полиња, мин./макс. вредности, должина на текст.</li><li>Опција за известување по е-пошта до претплатените корисници кога ќе се објави нова тура.</li><li>Во Дел 3 формата праќа <code>POST /api/ture</code>.</li></ul>
+  </details>
+</div>
+</main>
+<footer class="footer">
+  <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+    <span>© 2026 ВрвТура – организатор на планинарски тури</span>
+    <span>Веб програмирање 2026 · Дел 1 · <a href="rezime.html">Резиме</a> · <a href="db.html">/db</a></span>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
