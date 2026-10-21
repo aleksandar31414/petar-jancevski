@@ -1,133 +1,330 @@
-/* ВрвТура – заеднички стилови за сите маски (Дел 1) */
+/* ВрвТура – „Алпско утро“: планински дизајн со анимации */
 :root {
+  --night: #0b1626;
+  --dusk: #23365a;
   --forest: #1f4d3a;
-  --forest-dark: #153728;
+  --forest-dark: #123326;
   --moss: #4f7f5f;
-  --sand: #f4efe6;
-  --sun: #e8a33d;
-  --stone: #6b6f6a;
+  --sun: #ff9a3c;
+  --sun-soft: #ffcf8a;
+  --coral: #ff7b54;
+  --sand: #f5f2ec;
+  --snow: #fbfaf7;
+  --ink: #16202e;
+  --stone: #6b7486;
+  --line: #e4e0d6;
+  --radius: 20px;
+  --shadow: 0 14px 40px rgba(11, 22, 38, .08);
+  --font-head: 'Unbounded', 'Manrope', system-ui, sans-serif;
+  --font-body: 'Manrope', 'Segoe UI', system-ui, sans-serif;
 }
 
+/* ---------- основа ---------- */
 body {
-  background: var(--sand);
-  color: #22261f;
-  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  font-family: var(--font-body);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--sand);
+  /* топографски изохипси во позадина */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'%3E%3Cg fill='none' stroke='%231f4d3a' stroke-opacity='.06' stroke-width='1.2'%3E%3Cpath d='M300 120c90 0 170 60 170 160s-90 200-190 200S110 400 120 290s90-170 180-170z'/%3E%3Cpath d='M300 170c65 0 120 45 120 115s-65 145-135 145-125-55-118-130 68-130 133-130z'/%3E%3Cpath d='M300 220c40 0 72 28 72 70s-40 88-82 88-74-34-70-78 40-80 80-80z'/%3E%3Cpath d='M-50 80c120-40 220 30 330-10S520-20 650 40'/%3E%3Cpath d='M-50 540c140 30 230-40 340-10s200 60 310 20'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
 }
 main { flex: 1; }
+main.has-nav { padding-top: 66px; }
+h1, h2, h3, .h1, .h2, .h3, .h4, .h5 { font-family: var(--font-head); letter-spacing: -.01em; }
+h4, h5, h6 { font-weight: 700; }
+a { color: var(--forest); }
+a:hover { color: var(--coral); }
+::selection { background: var(--sun-soft); }
 
+.page-fade { animation: pageIn .5s ease both; }
+@keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ---------- копчиња и помошни класи ---------- */
 .bg-forest { background: var(--forest) !important; }
 .text-forest { color: var(--forest) !important; }
+.btn { border-radius: 999px; font-weight: 700; padding-left: 1.15rem; padding-right: 1.15rem; transition: transform .15s, box-shadow .15s, background .15s; }
+.btn:active { transform: translateY(1px); }
 .btn-forest { background: var(--forest); color: #fff; border: none; }
-.btn-forest:hover { background: var(--forest-dark); color: #fff; }
-.btn-outline-forest { border: 1px solid var(--forest); color: var(--forest); }
+.btn-forest:hover, .btn-forest:focus { background: var(--forest-dark); color: #fff; box-shadow: 0 8px 20px rgba(31, 77, 58, .3); }
+.btn-outline-forest { border: 1.5px solid var(--forest); color: var(--forest); background: transparent; }
 .btn-outline-forest:hover { background: var(--forest); color: #fff; }
+.btn-sun, .btn-warning { background: linear-gradient(135deg, var(--sun), var(--coral)); color: #fff !important; border: none; box-shadow: 0 10px 24px rgba(255, 123, 84, .35); }
+.btn-sun:hover, .btn-warning:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(255, 123, 84, .45); color: #fff; }
+.btn-glass { background: rgba(255, 255, 255, .12); color: #fff; border: 1px solid rgba(255, 255, 255, .35); backdrop-filter: blur(8px); }
+.btn-glass:hover { background: rgba(255, 255, 255, .22); color: #fff; }
+.form-control, .form-select { border-radius: 12px; border-color: var(--line); padding: .55rem .85rem; }
+.form-control:focus, .form-select:focus { border-color: var(--sun); box-shadow: 0 0 0 .25rem rgba(255, 154, 60, .18); }
+.form-label { font-weight: 700; font-size: .88rem; }
+.alert { border: 0; border-radius: 14px; }
+.badge { font-weight: 700; letter-spacing: .02em; }
+.progress { background: #ece8de; border-radius: 99px; }
+.progress-bar { border-radius: 99px; transition: width 1.2s cubic-bezier(.2, .8, .2, 1); }
+.progress-bar.bg-success { background: linear-gradient(90deg, var(--moss), var(--forest)) !important; }
+.nav-pills .nav-link { border-radius: 999px; font-weight: 700; }
+.nav-pills .nav-link.active, .nav-pills .nav-link.bg-forest { background: var(--forest) !important; }
+.pagination .page-link { border: 0; border-radius: 10px !important; margin: 0 2px; color: var(--forest); font-weight: 700; }
+.pagination .page-item.active .page-link { background: var(--forest); color: #fff; }
+.table { --bs-table-bg: transparent; }
+.table > thead th { font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--stone); }
 
-.navbar-brand i { color: var(--sun); }
-.role-badge { font-size: .7rem; }
+/* ---------- навигација ---------- */
+.vt-nav { transition: background .35s, box-shadow .35s, padding .35s; padding: .9rem 0; }
+.vt-nav.is-clear { background: transparent; }
+.vt-nav.is-solid { background: rgba(11, 22, 38, .88); backdrop-filter: blur(12px); box-shadow: 0 8px 30px rgba(0, 0, 0, .18); padding: .5rem 0; }
+.vt-nav .nav-link { color: rgba(255, 255, 255, .78) !important; font-weight: 600; border-radius: 999px; padding: .45rem .9rem !important; position: relative; }
+.vt-nav .nav-link:hover { color: #fff !important; background: rgba(255, 255, 255, .08); }
+.vt-nav .nav-link.active { color: #fff !important; background: rgba(255, 255, 255, .12); }
+.vt-nav .nav-link.active::after { content: ''; position: absolute; left: 50%; bottom: 2px; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: var(--sun); }
+.vt-nav .navbar-collapse.show { background: rgba(11, 22, 38, .96); border-radius: 16px; padding: .75rem; margin-top: .5rem; }
+.vt-brand { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-head); font-weight: 800; color: #fff !important; font-size: 1.25rem; }
+.vt-brand span { color: var(--sun-soft); }
+.logo-flag { transform-origin: 21px 5px; animation: flag 1.6s ease-in-out infinite; }
+@keyframes flag { 0%, 100% { transform: scaleX(1) skewY(0); } 50% { transform: scaleX(.75) skewY(-8deg); } }
+.role-badge { font-size: .72rem; border-radius: 999px; padding: .45em .8em; }
 
-/* Насловна секција */
-.hero {
-  background: linear-gradient(160deg, rgba(21,55,40,.92), rgba(79,127,95,.85)),
-              repeating-linear-gradient(135deg, #2c5e47 0 40px, #275640 40px 80px);
-  color: #fff;
-  padding: 5rem 0 4rem;
-  clip-path: polygon(0 0, 100% 0, 100% 88%, 70% 100%, 40% 90%, 0 100%);
-}
-.page-head {
-  background: var(--forest);
-  color: #fff;
-  padding: 2rem 0 1.6rem;
-  margin-bottom: 2rem;
-}
-.page-head .breadcrumb a { color: #cfe3d6; }
+/* ---------- голема сцена (почетна) ---------- */
+.mx-hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; color: #fff; overflow: hidden; background: var(--night); padding: 7rem 0 9rem; }
+.mx-sky { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mx-sky g { will-change: transform; }
+.mx-hero-content { position: relative; z-index: 2; }
+.mx-stars circle { animation: twinkle 3.5s ease-in-out infinite; }
+@keyframes twinkle { 0%, 100% { opacity: .9; } 50% { opacity: .15; } }
+.mx-sun circle:last-child { animation: sunPulse 6s ease-in-out infinite; transform-origin: 1240px 420px; }
+@keyframes sunPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+.mx-cloud { animation: drift linear infinite; }
+.mx-cloud.c1 { animation-duration: 70s; transform: translate(-200px, 150px); opacity: .35; }
+.mx-cloud.c2 { animation-duration: 95s; animation-delay: -40s; transform: translate(-200px, 230px); }
+.mx-cloud.c3 { animation-duration: 120s; animation-delay: -80s; transform: translate(-200px, 300px) scale(1.4); }
+@keyframes drift { from { translate: -260px 0; } to { translate: 1900px 0; } }
+.mx-birds { animation: birds 26s linear infinite; }
+@keyframes birds { from { transform: translate(-120px, 230px); } to { transform: translate(1560px, 140px); } }
+.mx-birds .bird { animation: flap .7s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.mx-birds .b2 { animation-delay: .2s; } .mx-birds .b3 { animation-delay: .4s; }
+@keyframes flap { from { transform: scaleY(1); } to { transform: scaleY(.45); } }
+.mx-mist { animation: mist 18s ease-in-out infinite alternate; }
+@keyframes mist { from { transform: translateX(-80px); } to { transform: translateX(80px); } }
+.mx-trail { animation: march 1.2s linear infinite; }
+@keyframes march { to { stroke-dashoffset: -24; } }
+.mx-flag { transform-box: fill-box; transform-origin: left center; animation: flag 1.4s ease-in-out infinite; }
+.mx-pine { transform-box: fill-box; transform-origin: bottom center; animation: sway 4s ease-in-out infinite; }
+@keyframes sway { 0%, 100% { transform: rotate(-1.2deg); } 50% { transform: rotate(1.2deg); } }
+.mx-snow { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.mx-snow i { position: absolute; top: -10px; width: 4px; height: 4px; border-radius: 50%; background: #fff; opacity: .7; animation: snow linear infinite; }
+.mx-snow i:nth-child(3n) { width: 3px; height: 3px; opacity: .45; }
+@keyframes snow { 0% { transform: translate(0, -10px); } 50% { transform: translate(18px, 50vh); } 100% { transform: translate(-6px, 105vh); } }
+
+.hero-copy > * { animation: rise .9s cubic-bezier(.2, .8, .2, 1) both; }
+.hero-copy > *:nth-child(2) { animation-delay: .12s; }
+.hero-copy > *:nth-child(3) { animation-delay: .24s; }
+.hero-copy > *:nth-child(4) { animation-delay: .36s; }
+@keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+.hero-kicker { display: inline-flex; gap: .45rem; align-items: center; font-weight: 700; font-size: .85rem; padding: .4rem .9rem; border-radius: 999px; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .22); backdrop-filter: blur(6px); margin-bottom: 1.2rem; }
+.hero-title { font-size: clamp(2.4rem, 6.5vw, 4.6rem); font-weight: 800; line-height: 1.02; margin-bottom: 1.1rem; text-shadow: 0 6px 30px rgba(0, 0, 0, .25); }
+.grad-text { background: linear-gradient(90deg, var(--sun-soft), var(--sun), var(--coral)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-lead { font-size: 1.15rem; max-width: 560px; opacity: .85; margin-bottom: 1.8rem; }
+.glass-card { background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .22); border-radius: 24px; padding: 1.4rem; backdrop-filter: blur(14px); box-shadow: 0 30px 60px rgba(0, 0, 0, .25); animation: rise 1s .45s cubic-bezier(.2, .8, .2, 1) both, float 7s 1.5s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.glass-inner { background: rgba(255, 255, 255, .92); color: var(--ink); border-radius: 16px; padding: .9rem; }
+.glass-link { color: var(--sun-soft); font-weight: 700; display: inline-flex; gap: .35rem; align-items: center; text-decoration: none; }
+.glass-link:hover { color: #fff; }
+.pulse-dot { width: 10px; height: 10px; border-radius: 50%; background: #5fe08f; box-shadow: 0 0 0 0 rgba(95, 224, 143, .6); animation: pulse 2s infinite; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(95, 224, 143, 0); } 100% { box-shadow: 0 0 0 0 rgba(95, 224, 143, 0); } }
+.scroll-cue { position: absolute; left: 50%; bottom: -5.5rem; transform: translateX(-50%); color: #fff; font-size: 1.4rem; opacity: .8; animation: bob 2s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
+
+/* стара класа .hero (ако се користи на друго место) */
+.hero { background: linear-gradient(160deg, var(--night), var(--dusk)); color: #fff; padding: 5rem 0 4rem; }
+
+/* ---------- бројки ---------- */
+.stats-strip { position: relative; z-index: 3; margin-top: -4.5rem; margin-bottom: 1rem; }
+.alt-stat { background: #fff; border-radius: var(--radius); padding: 1.3rem 1.2rem; box-shadow: var(--shadow); text-align: center; height: 100%; position: relative; overflow: hidden; }
+.alt-stat::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: linear-gradient(90deg, var(--forest), var(--sun)); }
+.alt-stat i { font-size: 1.3rem; color: var(--sun); }
+.alt-stat .num { font-family: var(--font-head); font-size: 2rem; font-weight: 800; color: var(--forest); line-height: 1.1; margin-top: .25rem; }
+.alt-stat .lbl { color: var(--stone); font-size: .85rem; font-weight: 600; }
+.stat { background: #fff; border-radius: var(--radius); padding: 1.2rem; border-left: 5px solid var(--sun); height: 100%; box-shadow: var(--shadow); }
+.stat .num { font-family: var(--font-head); font-size: 1.7rem; font-weight: 800; color: var(--forest); }
+
+/* ---------- секции на почетна ---------- */
+.section-head { margin: 3rem 0 1.4rem; }
+.eyebrow { display: inline-block; font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; color: var(--coral); margin-bottom: .4rem; }
+.section-title { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 800; color: var(--night); }
+.link-arrow { font-weight: 700; text-decoration: none; white-space: nowrap; }
+.link-arrow i { transition: transform .2s; display: inline-block; }
+.link-arrow:hover i { transform: translateX(4px); }
+
+.trail-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; position: relative; }
+.trail-steps::before { content: ''; position: absolute; top: 34px; left: 8%; right: 8%; border-top: 3px dashed #d8cfbf; z-index: 0; }
+.trail-step { position: relative; z-index: 1; background: #fff; border-radius: var(--radius); padding: 1.4rem 1.2rem; box-shadow: var(--shadow); text-align: center; }
+.trail-step > i { display: inline-flex; width: 52px; height: 52px; border-radius: 50%; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--forest), var(--moss)); color: #fff; font-size: 1.3rem; margin-bottom: .7rem; }
+.trail-step h3 { font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
+.trail-step p { color: var(--stone); font-size: .9rem; margin: 0; }
+.trail-num { position: absolute; top: 10px; right: 14px; font-family: var(--font-head); font-weight: 800; color: #eee7da; font-size: 1.6rem; }
+@media (max-width: 767px) { .trail-steps { grid-template-columns: repeat(2, 1fr); } .trail-steps::before { display: none; } }
+
+.level-card { display: block; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); color: var(--ink); text-decoration: none; transition: transform .25s, box-shadow .25s; height: 100%; }
+.level-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(11, 22, 38, .15); color: var(--ink); }
+.level-card .peak-scene { height: 170px; }
+.level-card:hover .peak-scene { transform: scale(1.05); }
+.level-body { padding: 1.1rem 1.2rem 1.3rem; }
+
+.cta-band { position: relative; border-radius: 28px; overflow: hidden; min-height: 260px; display: flex; align-items: center; box-shadow: var(--shadow); }
+.cta-band .cta-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cta-band::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11, 22, 38, .85), rgba(11, 22, 38, .2)); z-index: 1; }
+.cta-copy { position: relative; z-index: 2; color: #fff; padding: 2.5rem; max-width: 560px; }
+.cta-copy h2 { font-weight: 800; font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+.cta-copy p { opacity: .85; }
+
+/* ---------- појавување при скрол ---------- */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .8, .2, 1); }
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* ---------- заглавие на внатрешни страници ---------- */
+.page-head { position: relative; background: linear-gradient(160deg, var(--night) 0%, var(--dusk) 60%, #5a4a6e 100%); color: #fff; padding: 2.6rem 0 4.6rem; margin-bottom: 1.5rem; overflow: hidden; }
+.page-head h1 { font-weight: 800; animation: rise .7s cubic-bezier(.2, .8, .2, 1) both; }
+.page-head p { animation: rise .7s .1s cubic-bezier(.2, .8, .2, 1) both; }
+.ph-glow { position: absolute; right: 8%; top: 20%; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 207, 138, .55), rgba(255, 154, 60, 0) 70%); animation: sunPulse 6s ease-in-out infinite; }
+.page-head .breadcrumb a { color: var(--sun-soft); text-decoration: none; }
 .page-head .breadcrumb-item.active { color: #fff; }
-.page-head .breadcrumb-item + .breadcrumb-item::before { color: #cfe3d6; }
+.page-head .breadcrumb-item + .breadcrumb-item::before { color: rgba(255, 255, 255, .5); }
+.ridge-band { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 70px; }
+.ridge-band .rb-1 { fill: #3a3f66; opacity: .6; animation: ridge 14s ease-in-out infinite alternate; }
+.ridge-band .rb-2 { fill: #2a3b4f; opacity: .85; animation: ridge 10s ease-in-out infinite alternate-reverse; }
+.ridge-band .rb-3 { fill: var(--sand); }
+@keyframes ridge { from { transform: translateX(-20px); } to { transform: translateX(20px); } }
 
-/* Картички за тури */
-.tour-card { border: none; border-radius: 14px; overflow: hidden; transition: transform .15s; }
-.tour-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,.08); }
-.tour-img {
-  height: 160px; display: flex; align-items: flex-end; padding: .8rem;
-  color: #fff; font-size: 2.6rem; position: relative;
-}
+/* ---------- панели ---------- */
+.panel { background: rgba(255, 255, 255, .96); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid rgba(228, 224, 214, .6); }
+.panel h2, .panel h5, .panel h6 { color: var(--night); }
+.opis { background: #fffaf0; border: 1px dashed #e8d7b5; border-radius: 16px; padding: 1rem 1.2rem; }
+.opis summary { font-weight: 700; color: var(--forest); cursor: pointer; }
+.opis ul { margin: .8rem 0 0; }
+.auth-wrap { max-width: 500px; position: relative; }
+.auth-wrap::before { content: ''; position: absolute; inset: -14px -14px auto auto; width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle, var(--sun-soft), transparent 70%); z-index: -1; }
+
+/* ---------- картички за тури ---------- */
+.tour-card { border: none; border-radius: var(--radius); overflow: hidden; background: #fff; box-shadow: var(--shadow); transition: transform .3s cubic-bezier(.2, .8, .2, 1), box-shadow .3s; }
+.tour-card:hover { transform: translateY(-8px); box-shadow: 0 26px 50px rgba(11, 22, 38, .16); }
+.tour-card .card-title { font-family: var(--font-head); font-size: 1.02rem; font-weight: 700; }
+.tour-card .card-footer { background: transparent; }
+.tour-img { height: 180px; display: flex; align-items: flex-end; padding: .8rem; color: #fff; font-size: 2.2rem; position: relative; overflow: hidden; }
+.tour-img .peak-scene { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.tour-card:hover .tour-img .peak-scene { transform: scale(1.08); }
+.tour-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(11, 22, 38, .45)); }
+.tour-img .badge { position: absolute; top: .8rem; right: .8rem; font-size: .75rem; z-index: 2; border-radius: 999px; padding: .45em .8em; }
+.tour-img-lg { height: 260px; border-radius: var(--radius); }
+.tour-icon { position: relative; z-index: 2; width: 44px; height: 44px; border-radius: 14px; background: rgba(255, 255, 255, .22); backdrop-filter: blur(6px); display: inline-flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+.elev-chip { position: absolute; z-index: 2; left: .8rem; top: .8rem; font-size: .75rem; font-weight: 800; background: rgba(11, 22, 38, .55); backdrop-filter: blur(6px); padding: .3em .7em; border-radius: 999px; display: inline-flex; gap: .3rem; align-items: center; }
+.elev-chip i { color: var(--sun-soft); font-size: .65rem; }
 .g1 { background: linear-gradient(135deg, #2f6b52, #9cc3a8); }
 .g2 { background: linear-gradient(135deg, #3a4f6b, #a7b9d1); }
 .g3 { background: linear-gradient(135deg, #6b4a2f, #d9b48a); }
 .g4 { background: linear-gradient(135deg, #4b2f6b, #b9a2d6); }
 .g5 { background: linear-gradient(135deg, #2f5f6b, #8fc8d3); }
 .g6 { background: linear-gradient(135deg, #5d6b2f, #c8d38f); }
-.tour-img .badge { position: absolute; top: .8rem; right: .8rem; font-size: .75rem; }
+.diff-lesna { background: #2f9e5f !important; color: #fff; }
+.diff-sredna { background: var(--sun) !important; color: #fff; }
+.diff-teshka { background: #d64545 !important; color: #fff; }
 
-.diff-lesna { background: #3c9a5f !important; }
-.diff-sredna { background: var(--sun) !important; }
-.diff-teshka { background: #c0392b !important; }
+/* илустрации */
+.peak-scene { display: block; width: 100%; height: 100%; }
+.peak-scene.is-animated .ps-cloud { animation: psCloud 16s ease-in-out infinite alternate; }
+.peak-scene.is-animated .ps-sun { animation: psSun 8s ease-in-out infinite alternate; }
+.peak-scene.is-animated .ps-water { animation: psWater 3s ease-in-out infinite alternate; }
+.peak-scene.is-animated .ps-flakes { animation: psFlakes 6s linear infinite; }
+@keyframes psCloud { from { transform: translateX(-20px); } to { transform: translateX(160px); } }
+@keyframes psSun { from { transform: translateY(6px); } to { transform: translateY(-6px); } }
+@keyframes psWater { from { opacity: .6; } to { opacity: 1; } }
+@keyframes psFlakes { from { transform: translateY(-30px); } to { transform: translateY(60px); } }
 
-.panel { background: #fff; border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
-.stat { background: #fff; border-radius: 14px; padding: 1.2rem; border-left: 5px solid var(--moss); height: 100%; }
-.stat .num { font-size: 1.8rem; font-weight: 700; color: var(--forest); }
-
-/* Временска прогноза */
-.weather-day { background: #fff; border-radius: 12px; padding: 1rem .5rem; text-align: center; height: 100%; }
-.weather-day i { font-size: 2rem; }
+/* ---------- прогноза ---------- */
+.weather-day { background: #fff; border-radius: 16px; padding: 1rem .5rem; text-align: center; height: 100%; box-shadow: 0 6px 18px rgba(11, 22, 38, .06); transition: transform .2s; }
+.weather-day:hover { transform: translateY(-4px); }
+.weather-day i { font-size: 2rem; color: var(--sun); display: inline-block; animation: psSun 3s ease-in-out infinite alternate; }
 .weather-day.today { outline: 2px solid var(--sun); }
-.code-box { background: #1e2420; color: #cde7d6; border-radius: 10px; padding: 1rem; font-size: .8rem; overflow-x: auto; white-space: pre; }
-
-/* Листа опрема – влечење и спуштање */
-.drag-item { cursor: grab; background: #fff; border: 1px dashed #b9c8bd; border-radius: 8px; padding: .55rem .8rem; margin-bottom: .45rem; }
-.drag-item.dragging { opacity: .45; }
-.drag-item i.bi-grip-vertical { color: var(--stone); }
-
-/* Галерија со зумирање */
-.gallery-thumb { height: 90px; border-radius: 10px; cursor: zoom-in; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.6rem; border: none; width: 100%; }
-.zoom-view { height: 60vh; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 7rem; }
-
-/* Коментари */
-.avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--moss); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0; }
-
-/* Историја на активности */
-.timeline { border-left: 3px solid #cfdcd2; padding-left: 1.2rem; list-style: none; margin: 0; }
-.timeline li { position: relative; margin-bottom: 1rem; }
-.timeline li::before { content: ""; position: absolute; left: -1.62rem; top: .35rem; width: 12px; height: 12px; border-radius: 50%; background: var(--moss); }
-
-/* Опис на екранот (барање од Дел 1) */
-.opis { background: #fffdf7; border: 1px solid #e6dcc6; border-radius: 12px; padding: 1rem 1.2rem; }
-.opis summary { font-weight: 600; color: var(--forest); cursor: pointer; }
-.opis ul { margin: .8rem 0 0; }
-
-.auth-wrap { max-width: 480px; }
-
-.footer { background: var(--forest-dark); color: #b9cdbf; padding: 1.5rem 0; font-size: .9rem; margin-top: 3rem; }
-.footer a { color: #fff; }
-
-@media (max-width: 576px) {
-  .hero { padding: 3rem 0 3rem; }
-  .hero h1 { font-size: 1.9rem; }
-  .tour-img { height: 120px; }
-  .zoom-view { height: 40vh; font-size: 4rem; }
-}
-
-/* ---------- Додатоци за React апликацијата (Дел 4) ---------- */
-.modal-backdrop-custom { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 1050; }
-.modal.d-block { z-index: 1055; overflow-y: auto; }
-.zoom-stage { height: 60vh; overflow: hidden; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: zoom-in; }
-.zoom-stage .zoom-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 7rem; transition: transform .15s ease-out; }
-.drag-item.drag-over { border-color: var(--forest); background: #eef5f0; }
-.cursor-pointer { cursor: pointer; }
-.stars button { background: none; border: none; padding: 0 .1rem; font-size: 1.3rem; color: #c9c9c9; }
-.stars button.on { color: var(--sun); }
-.loader { min-height: 30vh; display: flex; align-items: center; justify-content: center; }
-.nav-link.active { font-weight: 600; }
-@media (max-width: 576px) { .zoom-stage { height: 40vh; } .zoom-stage .zoom-inner { font-size: 4rem; } }
-@media print {
-  .navbar, .footer, .no-print { display: none !important; }
-  body { background: #fff; }
-  .panel { box-shadow: none; }
-}
-
-/* 7-дневна прогноза */
-.week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: .5rem; }
+.code-box { background: var(--night); color: #cde7d6; border-radius: 14px; padding: 1rem; font-size: .8rem; overflow-x: auto; white-space: pre; }
+.week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: .6rem; }
 @media (max-width: 991px) { .week-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 576px) { .week-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* ---------- опрема (drag & drop) ---------- */
+.drag-item { cursor: grab; background: #fff; border: 1.5px dashed #cfc6b4; border-radius: 12px; padding: .6rem .85rem; margin-bottom: .5rem; transition: transform .15s, border-color .15s, background .15s; }
+.drag-item:hover { transform: translateX(3px); }
+.drag-item.dragging { opacity: .45; }
+.drag-item.drag-over { border-color: var(--sun); background: #fff6ea; }
+.drag-item i.bi-grip-vertical { color: var(--stone); }
+
+/* ---------- галерија и зум ---------- */
+.gallery-thumb { position: relative; height: 90px; border-radius: 14px; cursor: zoom-in; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.4rem; border: none; width: 100%; overflow: hidden; padding: 0; transition: transform .2s, box-shadow .2s; }
+.gallery-thumb .peak-scene { position: absolute; inset: 0; }
+.gallery-thumb i { position: relative; z-index: 1; text-shadow: 0 2px 8px rgba(0, 0, 0, .35); }
+.gallery-thumb:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(11, 22, 38, .18); }
+.zoom-view { height: 60vh; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 7rem; }
+.zoom-stage { height: 60vh; overflow: hidden; border-radius: 16px; display: flex; align-items: center; justify-content: center; cursor: zoom-in; }
+.zoom-stage .zoom-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 7rem; transition: transform .15s ease-out; }
+
+/* ---------- коментари, историја ---------- */
+.avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--forest), var(--moss)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+.timeline { border-left: 3px dashed #d8cfbf; padding-left: 1.2rem; list-style: none; margin: 0; }
+.timeline li { position: relative; margin-bottom: 1rem; }
+.timeline li::before { content: ''; position: absolute; left: -1.68rem; top: .3rem; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid var(--sun); }
+.stars button { background: none; border: none; padding: 0 .1rem; font-size: 1.4rem; color: #d6d0c4; transition: transform .15s; }
+.stars button:hover { transform: scale(1.2); }
+.stars button.on { color: var(--sun); }
+
+/* ---------- loader ---------- */
+.loader { min-height: 30vh; display: flex; align-items: center; justify-content: center; }
+.climb-loader { width: 80px; height: 50px; color: var(--forest); }
+.climb-path { stroke-dasharray: 110; stroke-dashoffset: 110; animation: climb 1.6s ease-in-out infinite; }
+@keyframes climb { 0% { stroke-dashoffset: 110; } 60%, 100% { stroke-dashoffset: 0; } }
+
+/* ---------- модал ---------- */
+.modal-backdrop-custom { position: fixed; inset: 0; background: rgba(11, 22, 38, .55); backdrop-filter: blur(4px); z-index: 1050; animation: fadeIn .2s ease; }
+.modal.d-block { z-index: 1055; overflow-y: auto; }
+.modal.d-block .modal-dialog { animation: popIn .3s cubic-bezier(.2, .8, .2, 1); }
+.modal-content { border: 0; border-radius: 22px; box-shadow: 0 30px 80px rgba(0, 0, 0, .3); }
+@keyframes fadeIn { from { opacity: 0; } }
+@keyframes popIn { from { opacity: 0; transform: translateY(20px) scale(.97); } }
+.cursor-pointer { cursor: pointer; }
+
+/* ---------- подножје ---------- */
+.footer { position: relative; background: var(--night); color: #9fb0c6; padding: 5rem 0 1.8rem; font-size: .9rem; margin-top: 4rem; }
+.footer .ridge-band { top: -1px; bottom: auto; transform: scaleY(-1); }
+.footer .ridge-band .rb-3 { fill: var(--sand); }
+.footer .ridge-band .rb-1 { fill: #1d2c44; opacity: 1; }
+.footer .ridge-band .rb-2 { fill: #15233a; opacity: 1; }
+.footer-inner { position: relative; }
+.footer a { color: var(--sun-soft); text-decoration: none; }
+.footer a:hover { color: #fff; }
+
+/* ---------- одговорен дизајн ---------- */
+@media (max-width: 991px) {
+  .mx-hero { padding: 6.5rem 0 8rem; min-height: auto; }
+  .glass-card { animation: rise 1s .45s both; }
+}
+@media (max-width: 576px) {
+  .hero-title { font-size: 2.3rem; }
+  .tour-img { height: 150px; }
+  .zoom-view, .zoom-stage { height: 40vh; }
+  .zoom-view, .zoom-stage .zoom-inner { font-size: 4rem; }
+  .page-head { padding: 2rem 0 4rem; }
+  .cta-copy { padding: 1.6rem; }
+}
+
+/* корисниците што не сакаат анимации */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ---------- печатење ---------- */
+@media print {
+  .navbar, .footer, .no-print, .ridge-band, .ph-glow { display: none !important; }
+  main.has-nav { padding-top: 0; }
+  body { background: #fff; }
+  .page-head { background: none; color: #000; padding: 0 0 1rem; }
+  .panel { box-shadow: none; }
+}

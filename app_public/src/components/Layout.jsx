@@ -1,6 +1,8 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { uloga } from '../pipes';
+import { LogoMark, RidgeBand } from './Scenery.jsx';
 
 /** Навигација – повторно употребена на сите страници; содржината зависи од улогата. */
 export function Navbar() {
@@ -16,11 +18,20 @@ export function Navbar() {
   ].filter(Boolean);
 
   const closeMenu = () => document.getElementById('mainNav')?.classList.remove('show');
+  const { pathname } = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 40);
+    on();
+    window.addEventListener('scroll', on, { passive: true });
+    return () => window.removeEventListener('scroll', on);
+  }, []);
+  const overHero = pathname === '/' && !scrolled;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-forest sticky-top">
+    <nav className={`navbar navbar-expand-lg navbar-dark fixed-top vt-nav ${overHero ? 'is-clear' : 'is-solid'}`}>
       <div className="container">
-        <Link className="navbar-brand fw-bold" to="/" onClick={closeMenu}><i className="bi bi-triangle-fill me-1" />ВрвТура</Link>
+        <Link className="navbar-brand vt-brand" to="/" onClick={closeMenu}><LogoMark />Врв<span>Тура</span></Link>
         <button className="navbar-toggler" type="button" aria-label="Мени"
           onClick={() => document.getElementById('mainNav').classList.toggle('show')}>
           <span className="navbar-toggler-icon" />
@@ -56,12 +67,18 @@ export function Navbar() {
 export function Footer() {
   return (
     <footer className="footer">
-      <div className="container d-flex flex-column flex-md-row justify-content-between gap-2">
-        <span>© 2026 ВрвТура – организатор на планинарски тури</span>
+      <RidgeBand />
+      <div className="container footer-inner">
+        <div className="d-flex flex-column flex-md-row justify-content-between gap-3 align-items-md-center">
+          <div>
+            <div className="vt-brand mb-1"><LogoMark size={26} />Врв<span>Тура</span></div>
+            <span className="small">© 2026 ВрвТура – организатор на планинарски тури</span>
+          </div>
         <span>
           Прогноза: <a href="https://open-meteo.com" target="_blank" rel="noreferrer">Open-Meteo</a> ·{' '}
           <a href="/api/docs/">REST API</a> · <Link to="/db">/db</Link> · <a href="/del1/">Маски (Дел 1)</a>
         </span>
+        </div>
       </div>
     </footer>
   );
@@ -71,7 +88,8 @@ export function Footer() {
 export function PageHeader({ title, subtitle, crumbs = [] }) {
   return (
     <section className="page-head">
-      <div className="container">
+      <div className="ph-glow" aria-hidden="true" />
+      <div className="container position-relative">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb small mb-2">
             <li className="breadcrumb-item"><Link to="/">Почетна</Link></li>
@@ -85,6 +103,7 @@ export function PageHeader({ title, subtitle, crumbs = [] }) {
         <h1 className="h3 mb-1">{title}</h1>
         {subtitle && <p className="mb-0 opacity-75">{subtitle}</p>}
       </div>
+      <RidgeBand />
     </section>
   );
 }

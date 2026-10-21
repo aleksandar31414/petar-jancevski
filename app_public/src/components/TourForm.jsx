@@ -1,3 +1,4 @@
+import { PeakScene } from './Scenery.jsx';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api.service';
@@ -141,8 +142,8 @@ export default function TourForm({ tour, submitLabel, onSubmit, cancelTo }) {
           <div className="d-flex flex-wrap gap-2">
             {COVERS.map((c) => (
               <button key={c} type="button" onClick={() => setForm((f) => ({ ...f, cover: c }))}
-                className={`gallery-thumb ${c}`} style={{ width: 56, height: 40, outline: form.cover === c ? '3px solid #e8a33d' : 'none' }}
-                aria-label={`Насловна ${c}`} aria-pressed={form.cover === c} />
+                className={`gallery-thumb ${c}`} style={{ width: 56, height: 40, outline: form.cover === c ? '3px solid #ff9a3c' : 'none' }}
+                aria-label={`Насловна ${c}`} aria-pressed={form.cover === c}><PeakScene variant={c} animated={false} /></button>
             ))}
           </div>
           <div className="form-text">Галерија (кликни за додавање/отстранување):</div>
@@ -150,7 +151,7 @@ export default function TourForm({ tour, submitLabel, onSubmit, cancelTo }) {
             {COVERS.map((c) => (
               <button key={c} type="button" onClick={() => toggleIn('gallery', c)}
                 className={`gallery-thumb ${c}`} style={{ width: 40, height: 28, opacity: form.gallery.includes(c) ? 1 : 0.3 }}
-                aria-label={`Галерија ${c}`} aria-pressed={form.gallery.includes(c)} />
+                aria-label={`Галерија ${c}`} aria-pressed={form.gallery.includes(c)}><PeakScene variant={c} animated={false} /></button>
             ))}
           </div>
         </div>

@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { PageHeader } from '../components/Layout.jsx';
 import Modal from '../components/Modal.jsx';
 import ZoomGallery from '../components/ZoomGallery.jsx';
+import { PeakScene } from '../components/Scenery.jsx';
 import CommentsSection from '../components/CommentsSection.jsx';
 import { TourWeather } from '../components/Weather.jsx';
 import { DifficultyBadge, ErrorAlert, Loader, useTitle } from '../components/ui.jsx';
@@ -92,8 +93,11 @@ export default function TourDetailPage() {
         <div className="row g-4">
           <div className="col-lg-8">
             <div className="panel mb-4">
-              <div className={`tour-img ${tour.cover} rounded-3 mb-3`} style={{ height: 220 }}>
-                <i className={`bi bi-${tour.icon}`} /><DifficultyBadge value={tour.difficulty} />
+              <div className={`tour-img tour-img-lg ${tour.cover} mb-3`}>
+                <PeakScene variant={tour.cover} label={tour.location?.name} />
+                <span className="tour-icon"><i className={`bi bi-${tour.icon}`} /></span>
+                {tour.location?.elevation ? <span className="elev-chip"><i className="bi bi-triangle-fill" />{tour.location.elevation} м</span> : null}
+                <DifficultyBadge value={tour.difficulty} />
               </div>
               <h2 className="h5">За турата</h2>
               <p style={{ whiteSpace: 'pre-line' }}>{tour.description || 'Нема опис.'}</p>

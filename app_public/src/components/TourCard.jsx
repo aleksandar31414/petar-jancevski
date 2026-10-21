@@ -1,19 +1,22 @@
 import { Link } from 'react-router-dom';
 import { DifficultyBadge } from './ui.jsx';
+import { PeakScene, Reveal } from './Scenery.jsx';
 import { datum, denari, pipe, skrati } from '../pipes';
 
 const shortTitle = pipe((t) => t.trim(), skrati(45));
 
 /**
  * Картичка за тура – се користи на почетна, листа на тури и пребарување.
- * @param {{tour: import('../models').Tour, admin?: boolean}} props
+ * @param {{tour: import('../models').Tour, admin?: boolean, delay?: number}} props
  */
-export default function TourCard({ tour, admin = false }) {
+export default function TourCard({ tour, admin = false, delay = 0 }) {
   return (
-    <div className="col-12 col-sm-6 col-lg-4">
+    <Reveal className="col-12 col-sm-6 col-lg-4" delay={delay}>
       <div className="card tour-card h-100">
         <div className={`tour-img ${tour.cover}`}>
-          <i className={`bi bi-${tour.icon}`} />
+          <PeakScene variant={tour.cover} label={tour.location?.name} />
+          <span className="tour-icon"><i className={`bi bi-${tour.icon}`} /></span>
+          {tour.location?.elevation ? <span className="elev-chip"><i className="bi bi-triangle-fill" />{tour.location.elevation} м</span> : null}
           <DifficultyBadge value={tour.difficulty} />
         </div>
         <div className="card-body">
@@ -33,7 +36,7 @@ export default function TourCard({ tour, admin = false }) {
             {tour.avgRating && <span className="float-end text-warning">★ {tour.avgRating}</span>}
           </p>
         </div>
-        <div className="card-footer bg-white border-0 d-flex gap-2 pb-3">
+        <div className="card-footer border-0 d-flex gap-2 pb-3">
           <Link to={`/ture/${tour._id}`} className="btn btn-sm btn-forest flex-grow-1">Детали</Link>
           {admin && (
             <>
@@ -43,6 +46,6 @@ export default function TourCard({ tour, admin = false }) {
           )}
         </div>
       </div>
-    </div>
+    </Reveal>
   );
 }

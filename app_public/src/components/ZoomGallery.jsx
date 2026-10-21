@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Modal from './Modal.jsx';
+import { PeakScene } from './Scenery.jsx';
 
 const ICONS = { g1: 'water', g2: 'tree', g3: 'triangle', g4: 'snow', g5: 'droplet', g6: 'sun' };
 
@@ -18,6 +19,7 @@ export default function ZoomGallery({ images, title }) {
         {images.map((img, i) => (
           <div className="col-3" key={`${img}-${i}`}>
             <button type="button" className={`gallery-thumb ${img}`} onClick={() => show(img)} aria-label={`Слика ${i + 1} – зумирај`}>
+              <PeakScene variant={img} animated={false} />
               <i className={`bi bi-${ICONS[img] || 'image'}`} />
             </button>
           </div>
@@ -37,7 +39,7 @@ export default function ZoomGallery({ images, title }) {
             onWheel={(e) => setZoom((z) => clamp(z + (e.deltaY < 0 ? 0.25 : -0.25)))}
             onDoubleClick={() => setZoom((z) => (z > 1 ? 1 : 2))}>
             <div className="zoom-inner" style={{ transform: `scale(${zoom})` }}>
-              <i className={`bi bi-${ICONS[open] || 'image'}`} />
+              <PeakScene variant={open} />
             </div>
           </div>
         )}

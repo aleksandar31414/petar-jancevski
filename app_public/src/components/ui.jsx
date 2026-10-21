@@ -6,7 +6,10 @@ export function Loader({ text = 'Се вчитува…' }) {
   return (
     <div className="loader">
       <div className="text-center text-muted">
-        <div className="spinner-border text-success mb-2" role="status" />
+        <svg className="climb-loader mb-2" viewBox="0 0 80 50" role="status" aria-label="Се вчитува">
+          <path d="M4 46 L30 12 L42 28 L52 18 L76 46Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" opacity=".35" />
+          <path className="climb-path" d="M4 46 L30 12 L42 28 L52 18 L76 46" fill="none" stroke="#ff9a3c" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
+        </svg>
         <div className="small">{text}</div>
       </div>
     </div>

@@ -11,8 +11,8 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <main>
-        <AppRoutes />
+      <main className={pathname === '/' ? 'is-home' : 'has-nav'}>
+        <div key={pathname} className="page-fade"><AppRoutes /></div>
       </main>
       <Footer />
     </>
