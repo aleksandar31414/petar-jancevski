@@ -27,9 +27,31 @@ const deleteAll = asyncH(async (req, res) => {
   res.status(200).json({ message: 'Сите податоци се избришани.', deleted });
 });
 
+// Заштита: две истовремени внесувања (двоен клик или повторно барање од Render) би се судриле.
+let seeding = false;
+
 /** POST /db/seed – ја празни базата и внесува иницијални податоци. */
 const seedAll = asyncH(async (req, res) => {
+  if (seeding) return res.status(409).json({ message: 'Внесувањето веќе е во тек – почекајте неколку секунди и освежете ја страницата.' });
+  seeding = true;
+  try {
+    let result;
+    try {
+      result = await runSeed();
+    } catch (err) {
+      if (err.code !== 11000) throw err;
+      // остаток од претходно прекинато внесување – избриши сè и обиди се уште еднаш
+      result = await runSeed();
+    }
+    return res.status(201).json(result);
+  } finally {
+    seeding = false;
+  }
+});
+
+async function runSeed() {
   await wipe();
+  await Promise.all(Object.values(MODELS).map((Model) => Model.syncIndexes()));
   const id = {};
   const save = (key, doc) => { id[key] = doc._id; };
 
@@ -87,7 +109,7 @@ const seedAll = asyncH(async (req, res) => {
   const counts = {};
   for (const [name, Model] of Object.entries(MODELS)) counts[name] = await Model.countDocuments();
   const total = Object.values(counts).reduce((a, b) => a + b, 0);
-  res.status(201).json({ message: `Внесени се ${total} документи во ${Object.keys(counts).length} колекции.`, counts });
-});
+  return { message: `Внесени се ${total} документи во ${Object.keys(counts).length} колекции.`, counts };
+}
 
 module.exports = { deleteAll, seedAll };
